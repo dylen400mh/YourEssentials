@@ -1,0 +1,35 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Navbar component > Renders a navbar with home and shop links 1`] = `
+<div>
+  <nav>
+    <a
+      href="/"
+    >
+      Home
+    </a>
+    <a
+      href="/shop"
+    >
+      Shop
+    </a>
+  </nav>
+</div>
+`;
+
+exports[`Navbar component > Renders a navbar with two links 1`] = `
+<div>
+  <nav>
+    <a
+      href="/"
+    >
+      Home
+    </a>
+    <a
+      href="/shop"
+    >
+      Shop
+    </a>
+  </nav>
+</div>
+`;
