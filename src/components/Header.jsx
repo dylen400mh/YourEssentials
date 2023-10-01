@@ -6,7 +6,7 @@ function Header({ cart }) {
   return (
     <header>
       <h1>Shopping Cart</h1>
-      <Navbar />
+      <Navbar data-testid="Navbar" />
       <CartButton cart={cart} />
     </header>
   );
