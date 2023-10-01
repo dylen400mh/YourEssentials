@@ -2,9 +2,7 @@
 
 exports[`Navbar component > Renders a navbar with home and shop links 1`] = `
 <div>
-  <nav
-    data-testid="Navbar"
-  >
+  <nav>
     <a
       href="/"
     >
