@@ -6,8 +6,8 @@ function CartButton({ cart }) {
   return (
     <div>
       <Link to="cart">
-        <ShoppingBagIcon />
-        <div>{cart.length}</div>
+        <ShoppingBagIcon data-testid="ShoppingBagIcon" />
+        {cart.length > 0 && <div data-testid="ItemCount">{cart.length}</div>}
       </Link>
     </div>
   );
