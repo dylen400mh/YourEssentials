@@ -47,6 +47,9 @@ After the component creation, routes will be implemented with React Router to en
 ### Styling
 After creating working components and routes, styling with Tailwind will be incorporated to allow for an aesthetically appealing shopping experience. 
 
+### Deployment
+The completed front-end application will be hosted on Netlify.
+
 ## Acknowledgments
 
 This project was completed by following [The Odin Project](https://www.theodinproject.com/)'s Web Development curriculum.
