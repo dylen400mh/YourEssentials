@@ -1,6 +1,6 @@
 # Ecommerce Shopping Cart
 
-This project is a react-based ecommerce website currently under development. It consists of a home page and shopping page, allowing users to explore products and add them to their cart.
+This project is a react-based ecommerce website currently under development. It will consist of a home page and shopping page, allowing users to explore products and add them to their cart.
 
 ## Table of Contents
 - [Features](#features)
