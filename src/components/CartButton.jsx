@@ -1,8 +1,11 @@
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import { useContext } from "react";
+import { ShopContext } from "./App";
 
-function CartButton({ cart }) {
+function CartButton() {
+  const {cart} = useContext(ShopContext);
+
   return (
     <div>
       <Link to="cart">
@@ -12,9 +15,5 @@ function CartButton({ cart }) {
     </div>
   );
 }
-
-CartButton.propTypes = {
-  cart: PropTypes.array,
-};
 
 export default CartButton;

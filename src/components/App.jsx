@@ -1,13 +1,25 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 import Header from "./Header";
 import { Link } from "react-router-dom";
+
+export const ShopContext = createContext({
+  cart: [],
+})
 
 function App() {
   const [cart, setCart] = useState([]);
 
+  const addToCart = (item) => {
+    setCart([...cart, item])
+  }
+
+  const removeFromCart = (item) => {
+    setCart(cart.filter(cartItem => cartItem !== item));
+  }
+
   return (
-    <div>
-      <Header cart={cart} />
+    <ShopContext.Provider value={{cart, addToCart, removeFromCart}}>
+      <Header />
       <h1>Welcome to YourEssentials</h1>
       <p>
         Your One-Stop Shop for Quality and Convenience! Discover a world of
@@ -17,7 +29,7 @@ function App() {
         and let us redefine the way you shop!
       </p>
       <Link to="/shop">Shop Now!</Link>
-    </div>
+    </ShopContext.Provider>
   );
 }
 
