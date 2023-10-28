@@ -13,7 +13,7 @@ describe("Header component", () => {
   });
 
   it("Renders h1 containing the site title", () => {
-    expect(screen.getByRole("heading").textContent).toBe("Shopping Cart");
+    expect(screen.getByRole("heading").textContent).toBe("YourEssentials");
   });
 
   it("Renders Navbar component", () => {
