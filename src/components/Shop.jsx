@@ -1,6 +1,7 @@
 import Header from "./Header";
 import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "./App";
+import ShopItem from "./ShopItem";
 
 function Shop() {
   const { cart } = useContext(ShopContext);
@@ -11,10 +12,10 @@ function Shop() {
 
   // fetch data from fakestore api
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products/", {mode: "cors"})
+    fetch("https://fakestoreapi.com/products/", { mode: "cors" })
       .then((res) => {
         if (res.status >= 400) {
-            throw new Error("server error");
+          throw new Error("server error");
         }
 
         return res.json();
@@ -24,12 +25,20 @@ function Shop() {
       .finally(() => setLoading(false));
   }, []);
 
-
-
   return (
     <div>
       <Header cart={cart}></Header>
-      {loading ? <p>Loading...</p> : error ? <p>An error has occured: {error}</p> : <ShopItems products={products}/>}
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>An error has occured: {error}</p>
+      ) : (
+        <div>
+          {products.map((product) => (
+            <ShopItem key={product.id} item={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
