@@ -1,12 +1,9 @@
 import Header from "./Header";
-import { useContext, useEffect, useState } from "react";
-import { ShopContext } from "./App";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import ShopItem from "./ShopItem";
 
-function Shop() {
-  //destructuring ShopContext
-  const { cart, addToCart, removeFromCart } = useContext(ShopContext);
-
+function Shop({ cart, addToCart, removeFromCart }) {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -49,5 +46,11 @@ function Shop() {
     </div>
   );
 }
+
+Shop.propTypes = {
+  cart: PropTypes.array,
+  addToCart: PropTypes.func,
+  removeFromCart: PropTypes.func,
+};
 
 export default Shop;
