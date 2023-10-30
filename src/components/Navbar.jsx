@@ -5,7 +5,7 @@ function Navbar(props) {
   return (
     <nav data-testid={props["data-testid"]}>
       <Link to="/">Home</Link>
-      <Link to="shop">Shop</Link>
+      <Link to="/shop">Shop</Link>
     </nav>
   );
 }
