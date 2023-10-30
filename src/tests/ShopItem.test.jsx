@@ -1,94 +1,124 @@
 /* eslint-disable no-undef */
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { vi } from "vitest";
 import ShopItem from "../components/ShopItem";
-import { BrowserRouter } from "react-router-dom";
-import userEvent from "@testing-library/user-event";
 
 describe("ShopItem component", () => {
-  it("Adds item to cart when 'add to cart' is clicked.", async () => {
-    const user = userEvent.setup();
+  const mockItem = {
+    id: "1",
+  };
 
-    const item = {
-      id: 1,
-      title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-      price: 109.95,
-      description:
-        "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-      category: "men's clothing",
-      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      rating: {
-        rate: 3.9,
-        count: 120,
+  const mockCart = [
+    {
+      item: mockItem,
+      quantity: 1,
+    },
+    {
+      item: {
+        id: "2",
       },
-    };
+      quantity: 2,
+    },
+  ];
 
-    const addToCart = vi.fn();
+  const mockSetCart = vi.fn();
+  const mockAddToCart = vi.fn();
+  const mockRemoveFromCart = vi.fn();
 
+  it('Renders an "Add to Cart" button when item is not in the cart', () => {
     render(
-      <BrowserRouter>
-        <ShopItem
-          item={item}
-          cart={[]}
-          addToCart={addToCart}
-          removeFromCart={() => {}}
-        />
-      </BrowserRouter>
+      <ShopItem
+        item={mockItem}
+        cart={[]}
+        setCart={mockSetCart}
+        addToCart={mockAddToCart}
+        removeFromCart={mockRemoveFromCart}
+      />
     );
 
     const addToCartButton = screen.getByText("Add To Cart");
-
-    await user.click(addToCartButton);
-
-    expect(addToCart).toHaveBeenCalledWith(item);
+    expect(addToCartButton).toBeInTheDocument();
   });
 
-  it("Changes item count when input field is modified.", async () => {
-    const user = userEvent.setup();
-
-    const item = {
-      id: 1,
-      title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-      price: 109.95,
-      description:
-        "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-      category: "men's clothing",
-      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      rating: {
-        rate: 3.9,
-        count: 120,
-      },
-    };
-
-    const cart = [{ item: item, quantity: 1 }];
-
-    const setCart = vi.fn((newCart) => {
-      expect(newCart).toEqual([{ item: item, quantity: 2 }]);
-    });
-
+  it("Renders +/- buttons and input field when item is in the cart", () => {
     render(
-      <BrowserRouter>
-        <ShopItem
-          item={item}
-          cart={cart}
-          setCart={setCart}
-          addToCart={() => {}}
-          removeFromCart={() => {}}
-        />
-      </BrowserRouter>
+      <ShopItem
+        item={mockItem}
+        cart={mockCart}
+        setCart={mockSetCart}
+        addToCart={mockAddToCart}
+        removeFromCart={mockRemoveFromCart}
+      />
     );
 
-    const itemCountInput = screen.getByTestId("ItemCountInput");
+    const minusButton = screen.getByText("-");
+    const plusButton = screen.getByText("+");
+    const quantityInput = screen.getByTestId("ItemCountInput");
 
-    itemCountInput.value = "";
-    await user.type(itemCountInput, "2");
-
-    expect(setCart).toHaveBeenCalled();
+    expect(minusButton).toBeInTheDocument();
+    expect(plusButton).toBeInTheDocument();
+    expect(quantityInput).toBeInTheDocument();
   });
 
-  it("Changes item count when +/- buttons are clicked.", () => {});
+  it('Calls addToCart function when "Add to Cart" button is clicked', () => {
+    render(
+      <ShopItem
+        item={mockItem}
+        cart={[]}
+        setCart={mockSetCart}
+        addToCart={mockAddToCart}
+        removeFromCart={mockRemoveFromCart}
+      />
+    );
 
-  it("Remove item from cart if - button is clicked and the item count is 1.", () => {});
+    const addToCartButton = screen.getByText("Add To Cart");
+    fireEvent.click(addToCartButton);
 
-  it("Replaces 'add to cart' button with +/- buttons and input field when an item is added.", () => {});
+    expect(mockAddToCart).toHaveBeenCalledWith(mockItem);
+  });
+
+  it('Calls removeFromCart function when "-" button is clicked and item count is 1', () => {
+    render(
+      <ShopItem
+        item={mockItem}
+        cart={mockCart}
+        setCart={mockSetCart}
+        addToCart={mockAddToCart}
+        removeFromCart={mockRemoveFromCart}
+      />
+    );
+
+    const minusButton = screen.getByText("-");
+    fireEvent.click(minusButton);
+
+    expect(mockRemoveFromCart).toHaveBeenCalledWith(mockItem);
+  });
+
+  it("Calls setCart function with updated quantity when input field is changed", () => {
+    render(
+      <ShopItem
+        item={mockItem}
+        cart={mockCart}
+        setCart={mockSetCart}
+        addToCart={mockAddToCart}
+        removeFromCart={mockRemoveFromCart}
+      />
+    );
+
+    const quantityInput = screen.getByTestId("ItemCountInput");
+    fireEvent.change(quantityInput, { target: { value: "3" } });
+
+    expect(mockSetCart).toHaveBeenCalledWith([
+      {
+        item: mockItem,
+        quantity: 3,
+      },
+      {
+        item: {
+          id: "2",
+        },
+        quantity: 2,
+      },
+    ]);
+  });
 });
