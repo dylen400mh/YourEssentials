@@ -2,7 +2,6 @@
 import { render, screen } from "@testing-library/react";
 import CartButton from "../components/CartButton";
 import { BrowserRouter } from "react-router-dom";
-import { ShopContext } from "../components/App";
 
 describe("CartButton component", () => {
   it("Renders a Link component and shopping cart icon when the cart is empty", () => {
@@ -27,9 +26,7 @@ describe("CartButton component", () => {
     const cart = [{}, {}];
     render(
       <BrowserRouter>
-        <ShopContext.Provider value={{ cart }}>
-          <CartButton />
-        </ShopContext.Provider>
+        <CartButton cart={cart} />
       </BrowserRouter>
     );
 
