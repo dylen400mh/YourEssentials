@@ -9,7 +9,9 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const addToCart = (item) => {
-    const oldCount = cart.some((cartItem) => cartItem.id === item.id) ? cart[item].quantity : 0;
+    const newItem = cart.find((cartItem) => cartItem.item.id === item.id);
+
+    const oldCount = newItem ? newItem.quantity : 0;
     const newEntry = { item: item, quantity: oldCount + 1 };
 
     setCart([
@@ -19,8 +21,11 @@ function App() {
   };
 
   const removeFromCart = (item) => {
-    const oldCount = cart[item].quantity;
+    const newItem = cart.find((cartItem) => cartItem.item.id === item.id);
+
+    const oldCount = newItem ? newItem.quantity : 0;
     const newEntry = { item: item, quantity: oldCount - 1 };
+
     newEntry.quantity
       ? setCart([
           ...cart.filter((cartItem) => cartItem.item.id !== item.id),
