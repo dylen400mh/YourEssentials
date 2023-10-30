@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ShopItem from "./ShopItem";
 
-function Shop({ cart, addToCart, removeFromCart }) {
+function Shop({ cart, setCart, addToCart, removeFromCart }) {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -37,6 +37,7 @@ function Shop({ cart, addToCart, removeFromCart }) {
               key={product.id}
               item={product}
               cart={cart}
+              setCart={setCart}
               addToCart={addToCart}
               removeFromCart={removeFromCart}
             />
@@ -49,6 +50,7 @@ function Shop({ cart, addToCart, removeFromCart }) {
 
 Shop.propTypes = {
   cart: PropTypes.array,
+  setCart: PropTypes.func,
   addToCart: PropTypes.func,
   removeFromCart: PropTypes.func,
 };
