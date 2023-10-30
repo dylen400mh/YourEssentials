@@ -9,7 +9,6 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const addToCart = (item) => {
-    
     const oldCount = cart.some((cartItem) => cartItem.id === item.id) ? cart[item].quantity : 0;
     const newEntry = { item: item, quantity: oldCount + 1 };
 
