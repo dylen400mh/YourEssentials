@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 function CartButton({ cart }) {
   return (
     <div>
-      <Link to="cart">
+      <Link to="/cart">
         <ShoppingBagIcon data-testid="ShoppingBagIcon" />
         {cart.length > 0 && <div data-testid="ItemCount">{cart.length}</div>}
       </Link>
