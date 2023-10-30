@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 export const ShopContext = createContext({
   cart: [],
+  addToCart: () => {},
+  removeFromCart: () => {},
 })
 
 function App() {
@@ -11,6 +13,7 @@ function App() {
 
   const addToCart = (item) => {
     setCart([...cart, item])
+    console.log("Added")
   }
 
   const removeFromCart = (item) => {

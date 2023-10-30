@@ -4,7 +4,8 @@ import { ShopContext } from "./App";
 import ShopItem from "./ShopItem";
 
 function Shop() {
-  const { cart } = useContext(ShopContext);
+  //destructuring ShopContext
+  const { cart, addToCart, removeFromCart } = useContext(ShopContext);
 
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
@@ -35,7 +36,13 @@ function Shop() {
       ) : (
         <div>
           {products.map((product) => (
-            <ShopItem key={product.id} item={product} />
+            <ShopItem
+              key={product.id}
+              item={product}
+              cart={cart}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+            />
           ))}
         </div>
       )}
