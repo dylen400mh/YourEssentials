@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function CartButton({ cart }) {
+  const cartSize = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <div>
       <Link to="/cart">
         <ShoppingBagIcon data-testid="ShoppingBagIcon" />
-        {cart.length > 0 && <div data-testid="ItemCount">{cart.length}</div>}
+        {cartSize > 0 && <div data-testid="ItemCount">{cartSize}</div>}
       </Link>
     </div>
   );
