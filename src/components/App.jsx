@@ -4,6 +4,7 @@ import Shop from "./Shop";
 import Cart from "./Cart";
 import ErrorPage from "./ErrorPage";
 import Home from "./Home";
+import Checkout from "./Checkout";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -53,7 +54,18 @@ function App() {
     },
     {
       path: "/cart",
-      element: <Cart />,
+      element: (
+        <Cart
+          cart={cart}
+          setCart={setCart}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+        />
+      ),
+    },
+    {
+      path: "/checkout",
+      element: <Checkout />,
     },
   ]);
 
