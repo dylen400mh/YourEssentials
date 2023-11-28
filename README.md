@@ -1,12 +1,20 @@
 # YourEssentials - Ecommerce Shopping Cart
 
-This project is a react-based ecommerce website currently under development. It will consist of a home page and shopping page, allowing users to explore products and add them to their cart.
+YourEssentials is an Ecommerce website created with React that mimics the experience of online shopping. Users have the ability to add items to their cart, modify their items, and navigate to the checkout page when ready.  
 
 ## Table of Contents
+- [Demo](#demo)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Current Stage of Development](#current-stage-of-development)
+- [Installation](#installation)
+- [Challenges and Lessons](#challenges-and-lessons)
 - [Acknowledgments](#acknowledgments)
+
+## Demo
+
+https://github.com/dylen400mh/YourEssentials/assets/97004369/784ff76e-c009-4607-93dd-de9161b498a7
+
+[LIVE DEMO](https://dylen400mh-youressentials.netlify.app/)
 
 ## Features
 
@@ -28,27 +36,34 @@ This project is a react-based ecommerce website currently under development. It 
   - Netlify
   - FakeStore API
 
-## Current Stage of Development
+## Installation
 
-The following is an outline of the current state of the project and the future implementations required to complete the application.
+Step-by-step instructions on how to install and set up the project locally.
 
-### Component Design
-The home and shop page components and their respective child components are currently being created and tested using React Testing Library to ensure they function as expected. Some of the main components include:
-- App component 
-- Router to handle routing
-- Navbar to switch between pages
-- Home and Shop pages
-- Product Cards to display product information
-- CartButton to display cart items
+1. Clone the repository:
 
-### Routing Setup
-After the component creation, routes will be implemented with React Router to ensure seamless navigation between pages. 
+   ```bash
+   git clone https://github.com/yourusername/yourproject.git
+   ```
+   
+2. Change to the project directory
 
-### Styling
-After creating working components and routes, styling with Tailwind will be incorporated to allow for an aesthetically appealing shopping experience. 
+   ```bash
+   cd yourproject
+   ```
+   
+3. Install dependencies
 
-### Deployment
-The completed front-end application will be hosted on Netlify.
+   ```
+   npm install
+   ```
+
+## Challenges and Lessons
+Throughout the development process, I was forced to adapt my approach to implementing certain features. Here are some issues I faced and what I learned from each of these encounters:
+
+  - I was unable to test my React components that included React Router components because I never created a BrowserRouter instance in my tests. I learned that create a BrowserRouter component was necessary for the execution of each of my tests.
+  - My routes and components were initially created in a way where the cart's current state couldn't be passed between components easilly. I discovered this was the result of me creating a separate Router component containing the router information. I could not use this component properly inside the App component to share state, so I moved my router configuration to the App component instead. This change allowed me to share state much easier between child components.
+  - Because I wrote some of my initial unit tests after I created the components, some tests were hard to pass. To alleviate this issue, I wrote the tests beforehand and created my components to pass their respective tests. This made Test Driven Development much more intuitive for me and increased my productivity immensely.
 
 ## Acknowledgments
 
