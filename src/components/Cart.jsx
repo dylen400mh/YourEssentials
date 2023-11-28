@@ -3,7 +3,10 @@ import Header from "./Header";
 import { Link } from "react-router-dom";
 
 function Cart({ cart, setCart, addToCart, removeFromCart }) {
-  const total = cart.reduce((total, item) => total + item.item.price, 0);
+  const total = cart.reduce(
+    (total, item) => total + item.item.price * item.quantity,
+    0
+  );
   const cartSize = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
