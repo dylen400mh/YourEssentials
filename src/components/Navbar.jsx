@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function Navbar(props) {
   return (
-    <nav data-testid={props["data-testid"]}>
+    <nav data-testid={props["data-testid"]} className="flex gap-4">
       <Link to="/">Home</Link>
       <Link to="/shop">Shop</Link>
     </nav>
