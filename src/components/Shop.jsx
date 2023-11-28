@@ -27,7 +27,7 @@ function Shop({ cart, setCart, addToCart, removeFromCart }) {
     <div className="bg-gray-100 min-h-screen">
       <Header cart={cart}></Header>
       <div className="container mx-12 py-4 mt-16">
-        <h1 className="text-4xl font-bold text-indigo-700 mb-4 ml-4">Shop</h1>
+        <h1 className="text-4xl font-bold text-indigo-700 mb-4">Shop</h1>
         {loading ? (
           <p className="text-center text-gray-600">Loading...</p>
         ) : error ? (
