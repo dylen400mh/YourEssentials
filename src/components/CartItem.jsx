@@ -23,15 +23,23 @@ function CartItem({
   }
 
   return (
-    <div>
-      <img src={item.image} alt="" />
-      <span>{item.title}</span>
-      <span>{item.price}</span>
-      <div id={item.id}>
+    <div className="item bg-white p-4 rounded-lg shadow-md w-64 h-auto flex flex-col justify-between">
+      <img
+        src={item.image}
+        alt={item.title}
+        className="rounded-md mb-4 w-full"
+        style={{ height: "200px" }}
+      />
+      <span className="block text-gray-800 font-bold text-center">
+        {item.title}
+      </span>
+      <span className="block text-gray-600 text-center">${item.price}</span>
+      <div id={item.id} className="flex items-center justify-center mt-4">
         <button
           onClick={() => {
             removeFromCart(item);
           }}
+          className="text-gray-500 hover:text-red-500 focus:outline-none"
         >
           -
         </button>
@@ -42,11 +50,13 @@ function CartItem({
           value={quantity}
           data-testid="ItemCountInput"
           onChange={onChange}
+          className="mx-2 w-12 text-center border border-gray-300 rounded"
         />
         <button
           onClick={() => {
             addToCart(item);
           }}
+          className="text-gray-500 hover:text-green-500 focus:outline-none"
         >
           +
         </button>
@@ -55,6 +65,7 @@ function CartItem({
         onClick={() => {
           removeFromCart(item);
         }}
+        className="mt-4 bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 focus:outline-none w-full"
       >
         Remove
       </button>
