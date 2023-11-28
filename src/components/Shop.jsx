@@ -24,26 +24,31 @@ function Shop({ cart, setCart, addToCart, removeFromCart }) {
   }, []);
 
   return (
-    <div>
+    <div className="bg-gray-100 min-h-screen">
       <Header cart={cart}></Header>
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>An error has occured: {error}</p>
-      ) : (
-        <div>
-          {products.map((product) => (
-            <ShopItem
-              key={product.id}
-              item={product}
-              cart={cart}
-              setCart={setCart}
-              addToCart={addToCart}
-              removeFromCart={removeFromCart}
-            />
-          ))}
-        </div>
-      )}
+      <div className="container mx-12 py-4 mt-16">
+        <h1 className="text-4xl font-bold text-indigo-700 mb-4 ml-4">Shop</h1>
+        {loading ? (
+          <p className="text-center text-gray-600">Loading...</p>
+        ) : error ? (
+          <p className="text-center text-red-600">
+            An error has occured: {error}
+          </p>
+        ) : (
+          <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {products.map((product) => (
+              <ShopItem
+                key={product.id}
+                item={product}
+                cart={cart}
+                setCart={setCart}
+                addToCart={addToCart}
+                removeFromCart={removeFromCart}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
